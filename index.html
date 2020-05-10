@@ -64,7 +64,11 @@
     async function scanCode() {
     }
 
-    function openWindow() {
+      function openWindow() {
+          liff.openWindow({
+              url: "https://line.me",
+              external: true
+          })
     }
 
     async function getFriendship() {
@@ -72,7 +76,7 @@
         document.getElementById("friendship").append(friend.friendFlag)
         if (!friend.friendFlag) {
             if (confirm("คุณยังไม่ได้เพิ่ม bot เป็นเพื่อน เพิ่มเลยไหม")) {
-                window.location = "https://line.me/R/ti/p/@178yfyoa"
+                window.location = "https://line.me/ti/p/~rdbeauty"
             }
         }
     }
