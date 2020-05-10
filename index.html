@@ -71,7 +71,7 @@
     }
 
     async function sendMsg() {
-        alert("Message sent2")
+        alert(liff.getContext().type)
         if (liff.getContext().type !== "none") {
             await liff.sendMessage([
                 {// max 5 bubbles
