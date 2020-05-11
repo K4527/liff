@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
   <meta charset="UTF-8">
@@ -7,18 +7,44 @@
   <link rel="stylesheet" href="css/style.css" media="all">
 </head>
 <body>
-  <h1>Hello World!</h1>
-  <p id="param"><b>Query Param: </b></p>
-  <img id="pictureUrl">
-  <p id="userId"><b>userId:</b> </p>
-  <p id="displayName"><b>displayName:</b> </p>
-  <p id="statusMessage"><b>statusMessage:</b> </p>
-  <p id="decodedIDToken"><b>email:</b> </p>
-  <script>
-    // Query Params
-    const queryString = decodeURIComponent(window.location.search);
-    const params = new URLSearchParams(queryString);
-    document.getElementById("param").append(params.get("param"));
-  </script>
-</body>
-</html>
+    <h1>Hello World!</h1>
+    <p id="param"><b>Query Param: </b></p>
+    <img id="pictureUrl">
+    <p id="userId"><b>userId:</b> </p>
+    <p id="displayName"><b>displayName:</b> </p>
+    <p id="statusMessage"><b>statusMessage:</b> </p>
+    <p id="decodedIDToken"><b>email:</b> </p>
+    <script>
+        // Query Params
+        const queryString = decodeURIComponent(window.location.search);
+        const params = new URLSearchParams(queryString);
+        document.getElementById("param").append(params.get("param"));
+    </script>
+    <script src="https://static.line-scdn.net/liff/edge/versions/2.1.13/sdk.js"></script>
+    <script>
+        async function getUserProfile() {
+            const profile = await liff.getProfile()
+            document.getElementById("pictureUrl").src = profile.pictureUrl
+            document.getElementById("userId").append(profile.userId)
+            document.getElementById("statusMessage").append(profile.statusMessage)
+            document.getElementById("displayName").append(profile.displayName)
+
+            document.getElementById("decodedIDToken").append(liff.getDecodedIDToken().email)
+
+
+        }
+        async function main() {
+            //alert("LINE Developers x Skooldio")
+            await liff.init({ liffId: "1654188264-Pj3bxJ1m" })
+            
+            if (liff.isLoggedIn()) {
+                getUserProfile()
+                
+            } else {
+                liff.login({ redirectUrl: "https://K4527.github.io/liff/path"})
+            }
+        }
+        main()
+    </script>
+</body >
+</html >
